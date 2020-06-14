@@ -1,5 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
 
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
 .todo{
   display: flex;
   justify-content: space-between;
@@ -16,6 +21,42 @@
 .todo-wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.alert-enter {
+  opacity: 0;
+}
+
+.alert-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+}
+
+.alert-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+}
+
+.todo-exit-active {
+  animation: todo 0.5s ease-out forwards;
+}
+
+.todo-enter-active {
+  animation: todo 0.5s ease-in alternate-reverse;
+}
+
+@keyframes todo {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    opacity: 0.7;
+    transform: translateX(10%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
 }
 
 

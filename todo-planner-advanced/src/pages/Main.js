@@ -1,18 +1,27 @@
-import React, {Fragment} from "react"
+import React, {Fragment, useContext, useEffect} from "react"
 import {Form} from "../components/Form";
 import {TodoList} from "../components/TodoList";
+import {FirebaseContext} from "../context/firebase/firebaseContext";
+import {Loader} from "../components/Loader";
 
 export const Main = () => {
-    const todos = [
-        {id: 1, title: "Todo 1", date: new Date().getDate(), time: new Date().getTime()},
-        {id: 2, title: "Todo 2", date: new Date().getDate(), time: new Date().getTime()},
-        {id: 3, title: "Todo 3", date: new Date().getDate(), time: new Date().getTime()},
-    ]
+    const {loading, todos, fetchTodo, removeTodo} = useContext(FirebaseContext)
+    
+    useEffect(() => {
+        fetchTodo()
+    }, [])
+    
     return (
         <Fragment>
             <Form />
             <hr/>
-            <TodoList todos={todos}/>
+            {
+                loading
+                    ? <Loader/>
+                    : todos && <TodoList todos={todos} onRemove={removeTodo}/>
+
+            }
+
         </Fragment>
     )
 }
