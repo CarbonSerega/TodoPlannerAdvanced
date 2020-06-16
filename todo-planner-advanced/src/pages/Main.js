@@ -12,16 +12,15 @@ export const Main = () => {
     }, [])
     
     return (
-        <Fragment>
+        <>
             <Form />
             <hr/>
             {
                 loading
                     ? <Loader/>
                     : todos && <TodoList todos={todos} onRemove={removeTodo}/>
-
             }
 
-        </Fragment>
+        </>
     )
 }

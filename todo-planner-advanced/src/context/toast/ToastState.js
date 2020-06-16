@@ -11,6 +11,12 @@ export const ToastState = ({children}) => {
             type: SHOW_TOAST,
             payload: {text, type}
         })
+
+        if(type !== 'warning') {
+            setTimeout(() => dispatch({
+                type: HIDE_TOAST
+            }), 3000)
+        }
     }
 
     const hide = () => dispatch({type: HIDE_TOAST})
